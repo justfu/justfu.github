@@ -238,8 +238,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/08/nginx反向代理实现外网请求转发到内网/" itemprop="url">
-                  未命名
+                <a class="post-title-link" href="/2016/09/18/对于大并发的一些处理/" itemprop="url">
+                  对于大并发的一些处理
                 </a>
               
             
@@ -252,109 +252,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-08T09:07:39+08:00" content="2016-08-08">
-              2016-08-08
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="外网服务器配置"><a href="#外网服务器配置" class="headerlink" title="外网服务器配置"></a>外网服务器配置</h1><ul>
-<li>外网服务器配置</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen 80;##监听端口</div><div class="line">    server_name  tangchao.kangzishangcheng.net;#已备案域名，</div><div class="line"></div><div class="line">    root   html;</div><div class="line">    index  index.html index.htm index.php;</div><div class="line"></div><div class="line">    ## send request back to apache ##</div><div class="line">    location / &#123;</div><div class="line">        add_header Access-Control-Allow-Origin: *;</div><div class="line">        proxy_pass  http://company_proxy;##内网服务器IP地址</div><div class="line"></div><div class="line">        #Proxy Settings</div><div class="line">        proxy_redirect     off;</div><div class="line">        proxy_set_header   Host            tangchao.face.com; ##内网地址的域名</div><div class="line">        proxy_set_header   X-Real-IP        $remote_addr;</div><div class="line">        proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;</div><div class="line">        proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;</div><div class="line">        proxy_max_temp_file_size 0;</div><div class="line">        proxy_connect_timeout      90;</div><div class="line">        proxy_send_timeout         90;</div><div class="line">        proxy_read_timeout         90;</div><div class="line">        proxy_buffer_size          4k;</div><div class="line">        proxy_buffers              4 32k;</div><div class="line">        proxy_busy_buffers_size    64k;</div><div class="line">        proxy_temp_file_write_size 64k;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>内网服务器配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">nginx config</div><div class="line">    #内网服务器配置</div><div class="line">    server&#123;</div><div class="line">            listen       80;##监听端口</div><div class="line">            server_name  tangchao.face.com;##内网配置域名</div><div class="line"></div><div class="line">            charset utf-8;</div><div class="line"></div><div class="line">            access_log  logs/tangchao.access.log;</div><div class="line"></div><div class="line">            root   /home/tangchao/www/face/Public;//网站访问目录</div><div class="line">            index  index.php index.html index.htm;</div><div class="line"></div><div class="line">         location / &#123;</div><div class="line">            add_header Access-Control-Allow-Origin: *;</div><div class="line">                    if (!-e $request_filename)&#123;</div><div class="line"></div><div class="line">                    rewrite  ^(.*)$  /index.php?s=$1  last;</div><div class="line"></div><div class="line">                    break;</div><div class="line"></div><div class="line">                    &#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">            # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</div><div class="line">            #</div><div class="line">            location ~ \.php$ &#123;</div><div class="line">                fastcgi_pass   127.0.0.1:9004;#PHP-cgi执行端口</div><div class="line">                fastcgi_index  index.php;</div><div class="line">                include        fastcgi_params;</div><div class="line">            fastcgi_param  TP_ENV  face;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/08/对于大并发的一些处理/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-08T09:07:38+08:00" content="2016-08-08">
-              2016-08-08
+            <time itemprop="dateCreated" datetime="2016-09-18T14:46:04+08:00" content="2016-09-18">
+              2016-09-18
             </time>
           </span>
 
@@ -479,13 +378,20 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>

@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="大并发 负载均衡," />
 
 
 
@@ -84,15 +84,55 @@
 
 
 
-<meta name="description" content="JUST FOR YOU">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hong">
-<meta property="og:url" content="http://yoursite.com/archives/2016/index.html">
+<meta name="description" content="对网站的服务器重新架构 负载均衡
+对网站的服务器重新架构 负载均衡
+
+
+硬件:使用负载均衡器 实现负载均衡
+软件lvs(liunx+virtual server)liunx虚拟服务,nginx:可以做web服务器,还可做负载均衡,
+
+
+负载均衡实现的方式
+
+
+轮询技术: 客户端请求服务器轮流转发
+ip哈希 同一ip地址的客户端,始终请求到同一台服务器。
+最少连接 把请求转发到最近空闲的服务器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对于大并发的一些处理">
+<meta property="og:url" content="http://yoursite.com/2016/09/18/对于大并发的一些处理/index.html">
 <meta property="og:site_name" content="Hong">
-<meta property="og:description" content="JUST FOR YOU">
+<meta property="og:description" content="对网站的服务器重新架构 负载均衡
+对网站的服务器重新架构 负载均衡
+
+
+硬件:使用负载均衡器 实现负载均衡
+软件lvs(liunx+virtual server)liunx虚拟服务,nginx:可以做web服务器,还可做负载均衡,
+
+
+负载均衡实现的方式
+
+
+轮询技术: 客户端请求服务器轮流转发
+ip哈希 同一ip地址的客户端,始终请求到同一台服务器。
+最少连接 把请求转发到最近空闲的服务器">
+<meta property="og:updated_time" content="2016-09-18T06:50:25.195Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hong">
-<meta name="twitter:description" content="JUST FOR YOU">
+<meta name="twitter:title" content="对于大并发的一些处理">
+<meta name="twitter:description" content="对网站的服务器重新架构 负载均衡
+对网站的服务器重新架构 负载均衡
+
+
+硬件:使用负载均衡器 实现负载均衡
+软件lvs(liunx+virtual server)liunx虚拟服务,nginx:可以做web服务器,还可做负载均衡,
+
+
+负载均衡实现的方式
+
+
+轮询技术: 客户端请求服务器轮流转发
+ip哈希 同一ip地址的客户端,始终请求到同一台服务器。
+最少连接 把请求转发到最近空闲的服务器">
 
 
 
@@ -113,9 +153,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2016/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/09/18/对于大并发的一些处理/"/>
 
-  <title> 归档 | Hong </title>
+  <title> 对于大并发的一些处理 | Hong </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -136,7 +176,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,66 +254,134 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 1 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                对于大并发的一些处理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-18T14:46:04+08:00" content="2016-09-18">
+              2016-09-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <h1 id="对网站的服务器重新架构-负载均衡"><a href="#对网站的服务器重新架构-负载均衡" class="headerlink" title="对网站的服务器重新架构 负载均衡"></a>对网站的服务器重新架构 负载均衡</h1><ol>
+<li>对网站的服务器重新架构 负载均衡</li>
+</ol>
+<ul>
+<li>硬件:使用负载均衡器 实现负载均衡</li>
+<li>软件lvs(liunx+virtual server)liunx虚拟服务,<br>nginx:可以做web服务器,还可做负载均衡,</li>
+</ul>
+<ol>
+<li>负载均衡实现的方式</li>
+</ol>
+<ul>
+<li>轮询技术: 客户端请求服务器轮流转发</li>
+<li>ip哈希 同一ip地址的客户端,始终请求到同一台服务器。</li>
+<li>最少连接 把请求转发到最近空闲的服务器</li>
+</ul>
+<ol>
+<li><p>数据库读写分离<br>将数据的读取和修改分离开来 对于网站的数据一般是读取会比修改多.所以我们设置多个读数据库.</p>
+<blockquote>
+<p>对于数据库数据的同步 由于在同一局域网环境下。所以同步数据的速度回相当的快</p>
+</blockquote>
+</li>
+<li><p>服务器集群</p>
+</li>
+</ol>
+<ul>
+<li>主要是解决计算机单点故障,在一集群中的计算机，只有一台计算机工作,其他计算机处于休眠状态,监视正在工作的计算机,当正在工作的计算机出现问题,则休眠的计算机立刻接替工作.</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/大并发-负载均衡/" rel="tag">#大并发 负载均衡</a>
+          
         </div>
       
-      
 
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/18/对于大并发的一些处理/" itemprop="url">
-              
-                <span itemprop="name">对于大并发的一些处理</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-18T14:46:04+08:00"
-              content="2016-09-18" >
-          09-18
-        </time>
-      </div>
-
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -281,6 +389,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -300,8 +412,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -344,6 +465,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对网站的服务器重新架构-负载均衡"><span class="nav-number">1.</span> <span class="nav-text">对网站的服务器重新架构 负载均衡</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -440,11 +572,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
